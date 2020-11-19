@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <router-link to = "/">HomePage </router-link>
-    <router-link to = "loginpage">LoginPage </router-link>
-    <router-link to = "browsepage">BrowsePage</router-link>
     <router-view></router-view>
   </div>
 </template>

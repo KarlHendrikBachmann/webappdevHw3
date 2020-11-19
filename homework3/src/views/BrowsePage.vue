@@ -1,52 +1,29 @@
 <template>
    <body>
-    <header>
-      <nav>
-        <div class="logo-container">
-          <img src="../assets/logo.png" alt="postIt">
+   <NavBar/>
+    <section class="main-container">
+      <div class='followBox' v-for="(user, index) in userList" :key="index">
+        <div class='followFlex'>
+          <img :src="user.avatar">
+          <h2>{{user.firstname + " " +user.lastname}}</h2>
+          <button type='button' :class="{'followButton' : !user.selected, 'followButton selected' : user.selected}" @click="toggleItem(user)">
+            <span v-if="!user.selected">Follow</span>
+            <span v-if="user.selected">Followed</span>
+          </button>
         </div>
-        <div class="search-container">
-          <input type="text" name="search"><button type="button">Search</button>
-        </div>
-        <div class="avatar-container">
-          <img class="avatar">
-          <div class="drop-down-container">
-            <span id="user-name">John Doe</span>
-            <span id="user-email"></span>
-            <span class="separator"></span>
-            <span>
-              <a href="browse.html">Browse</a>
-            </span>
-            <span class="separator"></span>
-            <span>
-              <a href="login.html">Log Out</a>
-            </span>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <v-container>
-      <section class="main-container">
-        <div class='followBox' v-for="(user, index) in userList" :key="index">
-          <div class='followFlex'>
-            <img :src="user.avatar">
-            <h2>{{user.firstname + " " +user.lastname}}</h2>
-            <button type='button' :class="{'followButton' : !user.selected, 'followButton selected' : user.selected}" @click="toggleItem(user)">
-              <span v-if="!user.selected">Follow</span>
-              <span v-if="user.selected">Followed</span>
-            </button>
-          </div>
-        </div>
-      </section>
-    </v-container>
+      </div>
+    </section>
   </body>
 </template>
 
 <script>
 
 import User from '../models/User'
+import NavBar from "@/views/NavBar";
 
 export default {
+  name: "BrowsePage",
+  components: {NavBar},
   data() {
     return{
         userList: [
