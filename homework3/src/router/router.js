@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import PostitApp from '../views/PostItApp.vue'
+import PostItApp from '../views/PostItApp.vue'
 import LoginPage from '../views/LoginPage.vue'
 import BrowsePage from '../views/BrowsePage.vue'
 
@@ -9,12 +9,12 @@ Vue.use(Router)
 export default new Router({
     routes: [
         {
-            path: '/',
-            name: 'App',
-            component: PostitApp
+            path: '/postitapp',
+            name: 'PostItApp',
+            component: PostItApp
         },
         {
-            path: '/loginpage',
+            path: '/',
             name: 'LoginPage',
             component: LoginPage
         },
