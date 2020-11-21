@@ -1,6 +1,8 @@
 <template>
   <body>
-  <NavBar/>
+  <header>
+    <NavBar/>
+  </header>
   <section class="main-container">
     <div class="post" v-for="(post, index) in postList" :key="index">
       <span class="post-author">
@@ -8,11 +10,12 @@
           <img v-bind:src="post.author.avatar" alt="Profile picture">
           <small>{{ post.author.firstname + " " + post.author.lastname }}</small>
         </span>
-        <small>{{ post.createTime }}</small>
+        <small>{{ post.createTime | formatDate }}</small>
       </span>
       <div v-if="post.media !== null" class="post-image">
-        <img v-if="post.media.url !== null || post.media.type !== 'image'" v-bind:src="post.media.url" alt="Post image">
-        <video v-if="post.media.type === 'video'">
+        <img v-if="post.media.type === 'image'" v-bind:src="post.media.url"
+             alt="Post image">
+        <video v-if="post.media.type === 'video'" controls>
           <source type="video/mp4" :src="post.media.url">
         </video>
       </div>
@@ -20,7 +23,7 @@
         <h3 v-if="post.text != null">{{ post.text }}</h3>
       </div>
       <div class="post-actions">
-        <button type="button" class="like-button">{{ post.likes }}</button>
+        <button type="button" :class="{'like-button' : !post.liked, 'like-button-liked' : post.liked}" @click="toggleLike(post)">{{ post.likes }}</button>
       </div>
     </div>
   </section>
@@ -45,6 +48,49 @@ export default {
         new Post(3, new User("Bruce", "Wayne", "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"), "Felt cute, might delete later", new Media("image", "https://i.pcmag.com/imagery/reviews/00EfzjLJNL6FNKVxviGg7Zw-2.1569473216.fit_scale.size_1182x667.jpg"), "100k"),
         new Post(4, new User("Richard", "Stallman", "https://images.unsplash.com/photo-1553798194-cc0213ae7f99?ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80"), null, new Media("video", "https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-code-screen-close-up-1728-large.mp4"), "1k")
       ]
+    }
+  },
+  methods: {
+    toggleLike: function(post) {
+      post.liked = post.liked !== true;
+    }
+  },
+  filters: {
+    formatDate: function (value) {
+      if (!value) return ''
+
+      let date = new Date(value);
+      let month = '';
+      if (date.getMonth() === 0) {
+        month = 'Jan';
+      } else if (date.getMonth() === 1) {
+        month = 'Feb';
+      } else if (date.getMonth() === 2) {
+        month = 'Mar';
+      } else if (date.getMonth() === 3) {
+        month = 'Apr';
+      } else if (date.getMonth() === 4) {
+        month = 'May';
+      } else if (date.getMonth() === 5) {
+        month = 'Jun';
+      } else if (date.getMonth() === 6) {
+        month = 'Jul';
+      } else if (date.getMonth() === 7) {
+        month = 'Aug';
+      } else if (date.getMonth() === 8) {
+        month = 'Sep';
+      } else if (date.getMonth() === 9) {
+        month = 'Oct';
+      } else if (date.getMonth() === 10) {
+        month = 'Nov';
+      } else if (date.getMonth() === 11) {
+        month = 'Dec';
+      }
+      return month + " "
+          + date.getDate() + ", "
+          + date.getFullYear() + " "
+          + date.getHours() + ":"
+          + date.getMinutes()
     }
   }
 }

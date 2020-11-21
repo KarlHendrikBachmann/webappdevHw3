@@ -2,7 +2,7 @@
   <header>
     <nav>
       <div class="logo-container">
-        <router-link to = "/">
+        <router-link to = "/postitapp">
           <img src="../assets/logo.png" alt="postIt">
         </router-link>
       </div>
