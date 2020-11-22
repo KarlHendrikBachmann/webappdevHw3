@@ -1,8 +1,8 @@
 export default class Post {
-    constructor(id, author, text, media, likes) {
+    constructor(id, author, createTime, text, media, likes) {
         this.id = id;
         this.author = author;
-        this.createTime = new Date();
+        this.createTime = createTime;
         this.text = text;
         this.media = media;
         this.likes = likes;

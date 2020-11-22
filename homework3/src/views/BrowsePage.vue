@@ -2,7 +2,7 @@
    <body>
    <NavBar/>
     <section class="main-container">
-      <div class='followBox' v-for="(user, index) in userList" :key="index">
+      <div class='followBox' v-for="(user, index) in users" :key="index">
         <div class='followFlex'>
           <img :src="user.avatar">
           <h2>{{user.firstname + " " +user.lastname}}</h2>
@@ -34,6 +34,14 @@ export default {
           new User("Richard","Stallman","https://images.unsplash.com/photo-1553798194-cc0213ae7f99?ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80")
         ]
     }
+  },
+  computed: {
+    users() {
+      return this.$store.state.users
+    }
+  },
+  mounted() {
+    this.$store.dispatch("getUsers");
   },
   methods: {
     toggleItem: function(user) {
