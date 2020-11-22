@@ -29,15 +29,21 @@
 </template>
 
 <script>
-import Profile from '../models/Profile'
 
 export default {
   name: "NavBar",
   data() {
     return {
-      profile: new Profile("John", "Doe", "john.doe@example.com", "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"),
       open: false
     }
+  },
+  computed: {
+    profile() {
+      return this.$store.state.profile
+    }
+  },
+  mounted() {
+    this.$store.dispatch("getProfile");
   },
   methods: {
     openDropdown: function() {

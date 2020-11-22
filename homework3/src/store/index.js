@@ -11,7 +11,7 @@ Vue.use(Vuex);
 const state = {
     posts: [],
     users: [],
-    profile: Profile
+    profile: null
 }
 
 //to handle state
