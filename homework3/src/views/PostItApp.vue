@@ -1,5 +1,5 @@
 <template>
-  <body>
+  <div>
   <NavBar/>
   <section class="main-container">
     <div class="post" v-for="post in posts" :key="post.id">
@@ -27,7 +27,7 @@
       </div>
     </div>
   </section>
-  </body>
+  </div>
 </template>
 
 <script>
