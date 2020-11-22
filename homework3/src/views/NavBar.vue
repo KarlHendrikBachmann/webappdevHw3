@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     openDropdown: function () {
-      console.log("asdf");
       this.open = this.open === false;
     }
   }

@@ -15,7 +15,7 @@
         </div>
         <div>
           <h3>Please Log In</h3>
-          <form action="#/postitapp" method="post" v-on:submit.capture=onSubmit>
+          <form method="post" v-on:submit.capture=onSubmit>
             <div>
               <input type="text" name="email" placeholder="Email">
             </div>
@@ -57,6 +57,7 @@ export default {
     }
 }
 </script>
+
 
 <style>
 @import url('../assets/css/style.css');
