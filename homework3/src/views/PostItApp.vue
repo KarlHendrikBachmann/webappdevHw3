@@ -1,8 +1,6 @@
 <template>
   <body>
-  <header>
     <NavBar/>
-  </header>
   <section class="main-container">
     <div class="post" v-for="(post, index) in postList" :key="index">
       <span class="post-author">
@@ -23,7 +21,9 @@
         <h3 v-if="post.text != null">{{ post.text }}</h3>
       </div>
       <div class="post-actions">
-        <button type="button" :class="{'like-button' : !post.liked, 'like-button-liked' : post.liked}" @click="toggleLike(post)">{{ post.likes }}</button>
+        <button type="button" :class="{'like-button' : !post.liked, 'like-button-liked' : post.liked}"
+                @click="toggleLike(post)">{{ post.likes }}
+        </button>
       </div>
     </div>
   </section>
@@ -51,7 +51,7 @@ export default {
     }
   },
   methods: {
-    toggleLike: function(post) {
+    toggleLike: function (post) {
       post.liked = post.liked !== true;
     }
   },

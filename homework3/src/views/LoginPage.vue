@@ -1,5 +1,5 @@
 <template>
-    <body id="app">
+    <body id="login-app">
     <section class="login-page">
       <section id="login-container">
         <div>
